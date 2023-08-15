@@ -15,8 +15,12 @@ export const ShoppingCartProvider = ({ children }) => {
 	// checkout show
 	const [showCheckout, setShowCheckout] = useState(false);
 
-	//carrito
+	// carrito
 	const [cartProducts, setCartProducts] = useState([]);
+
+	// ordenes
+	const [order, setOrder] = useState([])
+
 
 	return (
 		<ShoppingCartContext.Provider
@@ -31,6 +35,8 @@ export const ShoppingCartProvider = ({ children }) => {
 				setCartProducts,
 				showCheckout,
 				setShowCheckout,
+				order,
+				setOrder
 			}}
 		>
 			{children}

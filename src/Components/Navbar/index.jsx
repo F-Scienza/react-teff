@@ -5,11 +5,11 @@ import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 
 const Navbar = () => {
 	const context = useContext(ShoppingCartContext);
-	const { cartProducts } = context;
+	const { cartProducts, showCheckout, setShowCheckout } = context;
 	const activeStyle = 'underline underline-offset-4';
 
-	const count = cartProducts.length
-
+	const count = cartProducts.length;
+	const handleCheckout = () => setShowCheckout(!showCheckout);
 	return (
 		<nav className="top-0 flex justify-between items-center fixed z-10 w-full py-5 px-8 text-sm font-light">
 			<ul className="flex items-center gap-3">
@@ -87,7 +87,7 @@ const Navbar = () => {
 					</NavLink>
 				</li>
 				<li className="flex">
-					<ShoppingCartIcon className="w-6 h-6" />
+					<ShoppingCartIcon className="w-6 h-6" onClick={handleCheckout} />
 					<p> {count} </p>
 				</li>
 			</ul>

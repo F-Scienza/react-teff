@@ -1,18 +1,12 @@
 import { TrashIcon } from '@heroicons/react/24/solid';
-import { useContext } from 'react';
-import { ShoppingCartContext } from '../../Context';
 
 const OrderCard = props => {
-	const context = useContext(ShoppingCartContext);
-	const { cartProducts, setCartProducts } = context;
+	const { title, img, price, handleDeleteProduct, id } = props;
 
-	const { title, img, price, id } = props;
-
-	const handleDeleteProduct = () => {
-		const filterProducts = cartProducts.filter(prod => prod.id != id)
-		console.log(filterProducts)
-		setCartProducts(filterProducts);
-	};
+	let renderTrashIcon;
+	if (handleDeleteProduct) {
+		renderTrashIcon = <TrashIcon className="h-4 w-4 cursor-pointer" />;
+	}
 
 	return (
 		<div className="w-full mb-2 py-2 flex justify-between items-center">
@@ -26,9 +20,12 @@ const OrderCard = props => {
 				</figure>
 				<p className="text-sm font-light"> {title} </p>
 			</div>
-			<div className="flex items-center gap-2" onClick={handleDeleteProduct}>
+			<div
+				className="flex items-center gap-2"
+				onClick={() => handleDeleteProduct(id)}
+			>
 				<p className="text-lg font-medium px-2">${price}</p>
-				<TrashIcon className="h-4 w-4 cursor-pointer" />
+				{renderTrashIcon}
 			</div>
 		</div>
 	);
