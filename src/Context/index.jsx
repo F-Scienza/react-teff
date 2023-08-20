@@ -21,7 +21,7 @@ export const ShoppingCartProvider = ({ children }) => {
 	// ordenes
 	const [order, setOrder] = useState([])
 
-
+	// ordenes
 	return (
 		<ShoppingCartContext.Provider
 			value={{

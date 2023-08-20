@@ -1,30 +1,28 @@
 import { useContext } from 'react';
-import Layout from '../../Components/Layout';
 import { ShoppingCartContext } from '../../Context';
-import OrderCard from '../../Components/OrderCard';
+import Layout from '../../Components/Layout';
+import OrdersCard from '../../Components/OrdersCard/index.jsx';
+import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
 	const context = useContext(ShoppingCartContext);
-	const { order } = context;
-	
+	const { order } = context
 	return (
 		<Layout>
-			<h1>My orders</h1>
-			<div className="px-2 h-full">
-				{order.length > 0 ? (
-					order.map(prod => (
-						<OrderCard
-							key={prod.id}
-							id={prod.id}
-							title={prod.title}
-							img={prod.image}
-							price={prod.price}
+			<h2 className='text-l mb-4 font-semibold' >My orders:</h2>
+			{order.length > 0 ? (
+				order.map((orderItem, index) => (
+					<Link key={index} to={`/my-orders/${orderItem.id}`}>
+						<OrdersCard
+							totalPrice={orderItem.totalPrice}
+							totalProducts={orderItem.totalProducts}
+							date={orderItem.date}
 						/>
-					))
-				) : (
-					<p>Aún no hay ordenes...</p>
-				)}
-			</div>
+					</Link>
+				))
+			) : (
+				<p>No hay ordenes disponibles</p>
+			)}
 		</Layout>
 	);
 };
