@@ -1,7 +1,7 @@
 {
 	"homepage": "https://F-Scienza.github.io/react-teff",
 	"name": "react-teff",
-	"private": true,
+	"private": false,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
