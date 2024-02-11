@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
 	const context = useContext(ShoppingCartContext);
-	const { order } = context
+	const { orders } = context
 	return (
 		<Layout>
 			<h2 className='text-l mb-4 font-semibold' >My orders:</h2>
-			{order.length > 0 ? (
-				order.map((orderItem, index) => (
+			{orders.length > 0 ? (
+				orders.map((orderItem, index) => (
 					<Link key={index} to={`/my-orders/${orderItem.id}`}>
 						<OrdersCard
 							totalPrice={orderItem.totalPrice}

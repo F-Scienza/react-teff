@@ -7,11 +7,11 @@ import { ChevronDoubleLeftIcon } from '@heroicons/react/24/outline';
 
 const MyOrder = () => {
 	const context = useContext(ShoppingCartContext);
-	const { order } = context;
+	const { orders, handleDeleteOrderProduct } = context;
 
 	const params = useParams();
-	const foundOrder = order.find(order => order.id === params.id);
-	
+	const foundOrder = orders.find(order => order.id === params.id);
+
 	return (
 		<Layout>
 			<div className="relative flex w-80 items-center justify-center">
@@ -21,7 +21,7 @@ const MyOrder = () => {
 				<h2 className="text-l mb-4 font-semibold">My order:</h2>
 			</div>
 			<div className="px-2 h-full">
-				{order.length > 0 ? (
+				{orders.length > 0 ? (
 					foundOrder.products.map(prod => (
 						<OrderCard
 							key={prod.id}
@@ -29,6 +29,7 @@ const MyOrder = () => {
 							title={prod.title}
 							img={prod.image}
 							price={prod.price}
+							handleDeleteOrderProduct={handleDeleteOrderProduct}
 						/>
 					))
 				) : (

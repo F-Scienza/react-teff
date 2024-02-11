@@ -28,6 +28,7 @@ export const ShoppingCartProvider = ({ children }) => {
 			}
 		);
 	};
+
 	useEffect(() => {
 		searchValue.length > 0
 			? setFilteredItems(filterItemsByTitle(items, searchValue))
@@ -50,7 +51,16 @@ export const ShoppingCartProvider = ({ children }) => {
 	const [cartProducts, setCartProducts] = useState([]);
 
 	// ordenes
-	const [order, setOrder] = useState([]);
+	const [orders, setOrders] = useState([]);
+
+	const handleDeleteOrderProduct = (prodId, ordId)  => {
+		const order = orders.filter (order => order.ordId == ordId)
+		const filterProducts = order.products.filter(prod => prod.id != prodId);
+		setOrders(filterProducts);
+		console.log(order);
+	};
+
+
 
 	return (
 		<ShoppingCartContext.Provider
@@ -65,8 +75,9 @@ export const ShoppingCartProvider = ({ children }) => {
 				setCartProducts,
 				showCheckout,
 				setShowCheckout,
-				order,
-				setOrder,
+				orders,
+				setOrders,
+				handleDeleteOrderProduct,
 				items,
 				setItems,
 				searchValue,

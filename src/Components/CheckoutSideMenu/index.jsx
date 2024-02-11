@@ -14,8 +14,8 @@ const CheckoutSideMenu = () => {
 		setShowCheckout,
 		cartProducts,
 		setCartProducts,
-		order,
-		setOrder,
+		orders,
+		setOrders,
 	} = context;
 
 	const handleCheckout = () => {
@@ -41,13 +41,12 @@ const CheckoutSideMenu = () => {
 			id: newId,
 		};
 
-		setOrder([...order, orderToAdd]);
+		setOrders([...orders, orderToAdd]);
 		setCartProducts([]);
 	};
 
 	const handleDeleteProduct = id => {
 		const filterProducts = cartProducts.filter(prod => prod.id != id);
-		console.log(filterProducts);
 		setCartProducts(filterProducts);
 	};
 
@@ -77,20 +76,20 @@ const CheckoutSideMenu = () => {
 						/>
 					))
 				) : (
-					<p>Aún no hay productos...</p>
+					<p>No products...</p>
 				)}
 			</div>
-			<div className="flex font-bold text-center justify-evenly p-2">
-				<span className="font-medium text-2xl">
+			<div className="w-100 flex flex-col font-bold text-center justify-evenly p-2">
+				<span className="font-medium text-2xl w-50">
 					Total: ${totalPrice(cartProducts)}
 				</span>
 
 				<Link to={`/my-orders/${newId}`}>
 					<button
-						className="group relative h-8 w-28 overflow-hidden rounded-2xl bg-green-500 text-sm font-bold text-white"
+						className="mt-2 w-10/12 relative h-8 overflow-hidden rounded-lg border-solid border-2 border-green-500 hover:bg-green-500 text-sm font-bold hover:text-white hover:w-full transition-all ease-in-out duration-500"
 						onClick={handleSetOrder}
 					>
-						Comprar
+						GENERATE ORDER
 						<div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
 					</button>
 				</Link>
