@@ -9,9 +9,10 @@ const Home = () => {
 	const context = useContext(ShoppingCartContext);
 	const { setSearchValue, filteredItems } = context;
 
-	const handleSearch = ( e )=>{
-		setSearchValue(e.target.value)
-	}
+	const handleSearch = e => {
+		setSearchValue(e.target.value);
+		console.log(filteredItems);
+	};
 
 	return (
 		<Layout>
@@ -24,11 +25,17 @@ const Home = () => {
 				className="rounded-lg border border-black w-80 p-2 mb-8 focus:outline-none"
 				onChange={handleSearch}
 			/>
-			<div className="grid gap-4 grid-cols-3 w-full max-w-screen-lg">
-				{filteredItems?.map(item => (
-					<Card data={item} key={item.id} />
-				))}
-			</div>
+			{filteredItems.length > 0 ? (
+				<div className="grid gap-4 grid-cols-3 w-full max-w-screen-lg">
+					{filteredItems?.map(item => <Card data={item} key={item.id} />)}
+				</div>
+			) : (
+				<div className="flex items-center justify-center w-80 h-40">
+					<h2 className="text-l mb-4 font-semibold">
+						Ups... We can't find products.
+					</h2>
+				</div>
+			)}
 			<DetailProduct />
 			<CheckoutSideMenu />
 		</Layout>
