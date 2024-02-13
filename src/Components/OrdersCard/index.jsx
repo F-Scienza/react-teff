@@ -4,7 +4,7 @@ const OrdersCard = props => {
 	// eslint-disable-next-line react/prop-types
 	const { totalPrice, totalProducts, date } = props;
 	return (
-		<div className="flex justify-between items-center mb-3 border border-black rounded-lg p-4 w-80">
+		<div className="flex justify-between items-center mb-3 border border-black hover:border-cyan-300 rounded-lg p-4 w-80 transition-all ease-in-out duration-300">
 			<div className="flex">
 				<CalendarDaysIcon className="w-4 mr-1" />
 				<span className="text-xs">{date}</span>

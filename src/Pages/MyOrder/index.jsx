@@ -20,7 +20,7 @@ const MyOrder = () => {
 				</Link>
 				<h2 className="text-l mb-4 font-semibold">My order:</h2>
 			</div>
-			<div className="px-2 h-full">
+			<div className="flex flex-col items-center px-2 h-full">
 				{orders.length > 0 ? (
 					foundOrder.products.map(prod => (
 						<OrderCard
@@ -34,6 +34,14 @@ const MyOrder = () => {
 					))
 				) : (
 					<p>Aún no tienes una orden...</p>
+				)}
+				{orders.length > 0 && (
+					<Link to={`/my-orders/`}>
+						<button className="mt-2 w-60 relative h-8 overflow-hidden rounded-lg border-solid border-2 border-cyan-500 hover:border-none hover:bg-cyan-500 text-sm font-bold hover:text-white hover:w-80 transition-all ease-in-out duration-500">
+							PAYMENT
+							<div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+						</button>
+					</Link>
 				)}
 			</div>
 		</Layout>

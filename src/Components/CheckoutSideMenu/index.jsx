@@ -86,7 +86,7 @@ const CheckoutSideMenu = () => {
 
 				<Link to={`/my-orders/${newId}`}>
 					<button
-						className="mt-2 w-10/12 relative h-8 overflow-hidden rounded-lg border-solid border-2 border-green-500 hover:bg-green-500 text-sm font-bold hover:text-white hover:w-full transition-all ease-in-out duration-500"
+						className="mt-2 w-8/12 relative h-8 overflow-hidden rounded-lg border-solid border-2 border-green-500 hover:border-none hover:bg-green-500 text-sm font-bold hover:text-white hover:w-full transition-all ease-in-out duration-500"
 						onClick={handleSetOrder}
 					>
 						GENERATE ORDER

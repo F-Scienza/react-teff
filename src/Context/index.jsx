@@ -11,29 +11,46 @@ export const ShoppingCartProvider = ({ children }) => {
 			.then(json => setItems(json));
 	}, []);
 
+	// items por categoria
+	const [categoryTitle, setCategoryTitle] = useState('');
+	const [itemsByCategory, setItemsByCategory] = useState(items);
+
+	useEffect(() => {
+		console.log('use effect category')
+		if (categoryTitle.length > 1) {
+			setItemsByCategory(
+				items.filter(
+					item =>
+						item.category.toLowerCase() ===
+						categoryTitle?.toLocaleLowerCase()
+				)
+			);
+		} else {
+			setItemsByCategory(items);
+		}
+	}, [categoryTitle]);
+
 	// search
 	const [searchValue, setSearchValue] = useState('');
 
 	// filtrados por titulo
-	const [filteredItems, setFilteredItems] = useState([]);
+	const [filteredItems, setFilteredItems] = useState(itemsByCategory);
 
-	const filterItemsByTitle = (items, searchValue) => {
-		return items?.filter(
-			item => {
-				const parseTitle = item.title.toLowerCase();
-				const parsedValue = searchValue.toLowerCase();
-				const filtered = parseTitle.includes(parsedValue);
+	const filterItemsByTitle = (itemsByCategory, searchValue) => {
+		return itemsByCategory?.filter(item => {
+			const parseTitle = item.title.toLowerCase();
+			const parsedValue = searchValue.toLowerCase();
+			const filtered = parseTitle.includes(parsedValue);
 
-				return filtered;
-			}
-		);
+			return filtered;
+		});
 	};
 
 	useEffect(() => {
 		searchValue.length > 0
 			? setFilteredItems(filterItemsByTitle(items, searchValue))
-			: setFilteredItems(items);
-	}, [items, searchValue]);
+			: setFilteredItems(itemsByCategory);
+	}, [items, searchValue, itemsByCategory]);
 
 	// contador de shopping cart
 	const [count, setCount] = useState(0);
@@ -53,14 +70,12 @@ export const ShoppingCartProvider = ({ children }) => {
 	// ordenes
 	const [orders, setOrders] = useState([]);
 
-	const handleDeleteOrderProduct = (prodId, ordId)  => {
-		const order = orders.filter (order => order.ordId == ordId)
+	const handleDeleteOrderProduct = (prodId, ordId) => {
+		const order = orders.filter(order => order.ordId == ordId);
 		const filterProducts = order.products.filter(prod => prod.id != prodId);
 		setOrders(filterProducts);
 		console.log(order);
 	};
-
-
 
 	return (
 		<ShoppingCartContext.Provider
@@ -83,6 +98,9 @@ export const ShoppingCartProvider = ({ children }) => {
 				searchValue,
 				setSearchValue,
 				filteredItems,
+				categoryTitle,
+				setCategoryTitle,
+				setItemsByCategory,
 			}}
 		>
 			{children}

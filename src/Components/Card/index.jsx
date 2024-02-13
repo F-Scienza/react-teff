@@ -31,7 +31,7 @@ const Card = data => {
 
 		if (isInCart) {
 			return (
-				<div className="absolute top-0 right-0 flex justify-center items-center bg-white w-7 h-7 rounded-full m-2 p-1 z-10">
+				<div className="absolute top-0 right-0 flex justify-center items-center bg-white w-7 h-7 rounded-full m-2 p-1 z-10 transition-all duration-300 ease-in-out">
 					<CheckIcon className="w-6 h-6" />
 				</div>
 			);
@@ -39,7 +39,7 @@ const Card = data => {
 			return (
 				<div
 					onClick={handleAddToCart}
-					className="absolute top-0 right-0 flex justify-center items-center bg-white w-7 h-7 rounded-full m-2 p-1 z-10"
+					className="absolute top-0 right-0 flex justify-center items-center bg-white w-7 h-7 rounded-full m-2 p-1 hover:p-0 z-10 transition-all duration-300 ease-in-out"
 				>
 					<PlusCircleIcon className="w-6 h-6" />
 				</div>
