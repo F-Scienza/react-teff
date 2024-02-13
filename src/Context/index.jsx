@@ -6,9 +6,13 @@ export const ShoppingCartProvider = ({ children }) => {
 	// get datos
 	const [items, setItems] = useState([]);
 	useEffect(() => {
-		fetch('https://fakestoreapi.com/products')
+		fetch('https://fakestoreapi.com/products/')
 			.then(res => res.json())
 			.then(json => setItems(json));
+		console.log(`
+			fetch a la API
+			==============
+		`);
 	}, []);
 
 	// items por categoria
@@ -16,19 +20,21 @@ export const ShoppingCartProvider = ({ children }) => {
 	const [itemsByCategory, setItemsByCategory] = useState(items);
 
 	useEffect(() => {
-		console.log('use effect category')
 		if (categoryTitle.length > 1) {
 			setItemsByCategory(
 				items.filter(
 					item =>
-						item.category.toLowerCase() ===
-						categoryTitle?.toLocaleLowerCase()
+						item.category.toLowerCase() === categoryTitle?.toLocaleLowerCase()
 				)
 			);
 		} else {
 			setItemsByCategory(items);
 		}
-	}, [categoryTitle]);
+		console.log(`
+			Effect category
+			==============
+		`);
+	}, [categoryTitle, items]);
 
 	// search
 	const [searchValue, setSearchValue] = useState('');
@@ -50,6 +56,10 @@ export const ShoppingCartProvider = ({ children }) => {
 		searchValue.length > 0
 			? setFilteredItems(filterItemsByTitle(items, searchValue))
 			: setFilteredItems(itemsByCategory);
+		console.log(`
+			effect en search value 
+			======================
+		`);
 	}, [items, searchValue, itemsByCategory]);
 
 	// contador de shopping cart
