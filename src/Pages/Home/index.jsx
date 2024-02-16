@@ -28,7 +28,7 @@ const Home = () => {
 				onChange={handleSearch}
 			/>
 			{filteredItems.length > 0 ? (
-				<div className="grid gap-4 grid-cols-3 w-full max-w-screen-lg">
+				<div className="flex flex-wrap justify-evenly md:grid gap-4 md:grid-cols-3 p-4 items-center w-full max-w-screen-lg">
 					{filteredItems?.map(item => (
 						<Card data={item} key={item.id} />
 					))}

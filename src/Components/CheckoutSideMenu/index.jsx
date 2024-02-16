@@ -54,7 +54,7 @@ const CheckoutSideMenu = () => {
 		<aside
 			className={`${
 				showCheckout ? 'flex' : 'hidden'
-			} checkout-detail scrollable-cards flex-col justify-between fixed right-2 border border-black rounded-lg bg-white h-4/5 z-20`}
+			} checkout-detail scrollable-cards flex-col justify-between fixed md:right-2 border border-black rounded-lg bg-white h-4/5 z-20`}
 		>
 			<div className="flex justify-between p-4">
 				<h2 className="text-lg font-semibold">Checkout</h2>
